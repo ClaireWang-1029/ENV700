@@ -7831,7 +7831,7 @@ Date: Fall 2026
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 1.1 Packages</span>
@@ -7849,7 +7849,7 @@ Date: Fall 2026
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 1.2 Paths </span>
@@ -7911,39 +7911,11 @@ Processed data: ..\data\processed
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2.1.1 Import the NTL_LTER dataset as a dataframe, converting the sampledate field to a datetime object</span>
-<span class="n">nutrients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="n">raw_fldr</span> <span class="o">/</span> <span class="s1">'NTL-LTER_Lake_Nutrients_RAW.csv'</span><span class="p">,</span>
-    <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'lakename'</span><span class="p">,</span> <span class="s1">'sampledate'</span><span class="p">,</span> <span class="s1">'depth'</span><span class="p">,</span> <span class="s1">'tn_ug'</span><span class="p">,</span> <span class="s1">'tp_ug'</span><span class="p">,</span> <span class="s1">'po4'</span><span class="p">],</span>
-    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'sampledate'</span><span class="p">],</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">'%m/</span><span class="si">%d</span><span class="s1">/%y'</span>
-<span class="p">)</span>
-<span class="n">chemistry</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="n">raw_fldr</span> <span class="o">/</span> <span class="s1">'NTL-LTER_Lake_ChemistryPhysics_RAW.csv'</span><span class="p">,</span>
-    <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'lakename'</span><span class="p">,</span> <span class="s1">'sampledate'</span><span class="p">,</span> <span class="s1">'depth'</span><span class="p">,</span> <span class="s1">'temperature_C'</span><span class="p">],</span>
-    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'sampledate'</span><span class="p">],</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">'%m/</span><span class="si">%d</span><span class="s1">/%y'</span>
-<span class="p">)</span>
-
-<span class="n">nutrients</span> <span class="o">=</span> <span class="n">nutrients</span><span class="p">[</span><span class="n">nutrients</span><span class="p">[</span><span class="s1">'lakename'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'Peter Lake'</span><span class="p">,</span> <span class="s1">'Paul Lake'</span><span class="p">])]</span>
-<span class="n">chemistry</span> <span class="o">=</span> <span class="n">chemistry</span><span class="p">[</span><span class="n">chemistry</span><span class="p">[</span><span class="s1">'lakename'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'Peter Lake'</span><span class="p">,</span> <span class="s1">'Paul Lake'</span><span class="p">])]</span>
-<span class="n">lakes</span> <span class="o">=</span> <span class="n">nutrients</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">chemistry</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">'lakename'</span><span class="p">,</span> <span class="s1">'sampledate'</span><span class="p">,</span> <span class="s1">'depth'</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">'outer'</span><span class="p">)</span>
-<span class="n">lakes</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">processed_fldr</span> <span class="o">/</span> <span class="s1">'NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39be9081">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">lakes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="n">lakes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
     <span class="n">processed_fldr</span> <span class="o">/</span> <span class="s1">'NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv'</span><span class="p">,</span>
     <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'sampledate'</span><span class="p">]</span>
 <span class="p">)</span>
@@ -7957,7 +7929,7 @@ Processed data: ..\data\processed
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2.1.2 Create a month column to be an ordered categorical data type with levels for all months.</span>
@@ -7976,7 +7948,7 @@ Processed data: ..\data\processed
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2.1.3 Display the first 5 records of the dataframe</span>
@@ -7991,7 +7963,7 @@ Processed data: ..\data\processed
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8089,18 +8061,10 @@ Processed data: ..\data\processed
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2.2.1 Import the NEON NIWO dataset, setting the `collectDate` field to a datetime object</span>
-<span class="n">litter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">raw_fldr</span> <span class="o">/</span> <span class="s1">'NEON_NIWO_Litter_massdata_2016-26_raw.csv'</span><span class="p">)</span>
-<span class="n">traps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="n">raw_fldr</span> <span class="o">/</span> <span class="s1">'NEON_NIWO_Litter_trapdata_raw.csv'</span><span class="p">,</span>
-    <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'trapID'</span><span class="p">,</span> <span class="s1">'nlcdClass'</span><span class="p">]</span>
-<span class="p">)</span>
-<span class="n">litter</span> <span class="o">=</span> <span class="n">litter</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">traps</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">'trapID'</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
-<span class="n">litter</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">processed_fldr</span> <span class="o">/</span> <span class="s1">'NEON_NIWO_Litter_mass_trap_Processed.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
 <span class="n">litter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
     <span class="n">processed_fldr</span> <span class="o">/</span> <span class="s1">'NEON_NIWO_Litter_mass_trap_Processed.csv'</span><span class="p">,</span>
     <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'collectDate'</span><span class="p">]</span>
@@ -8115,7 +8079,7 @@ Processed data: ..\data\processed
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2.2.2 Create a year column from the `collectDate` field.</span>
